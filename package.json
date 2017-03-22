@@ -1,5 +1,5 @@
 {
-  "name": "my_cool_app",
+  "name": "FIUClubs",
   "private": true,
   "scripts": {
     "start": "meteor run"
