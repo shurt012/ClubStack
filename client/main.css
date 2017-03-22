@@ -33,7 +33,7 @@ button {
     margin: 24px 0 12px 0;
 }
 
-img.avatar {
+img .avatar {
     width: 20%;
     border-radius: 30%;
 }
@@ -45,7 +45,7 @@ img.avatar {
     text-align: center;
 }
 
-span.psw {
+span .psw {
     float: right;
     padding-top: 16px;
 }
