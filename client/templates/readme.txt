@@ -1,1 +1,0 @@
-template that will be supplied to layout go in this directory
