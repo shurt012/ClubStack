@@ -4,12 +4,21 @@
 
 FlowRouter.route(["/", "/home"], {
     action: () => {
-        FlowLayout.render("layout", {main: ""});
+        FlowLayout.render("layout", {main: "home"});
     }
 });
-
 FlowRouter.route("/signin", {
     action: () => {
         FlowLayout.render("layout", {main: "signin"});
+    }
+});
+FlowRouter.route("/forum", {
+    action: () => {
+        FlowLayout.render("layout", {main: "forum"});
+    }
+});
+FlowRouter.route("/register", {
+    action: () => {
+        FlowLayout.render("layout", {main: "register"});
     }
 });
