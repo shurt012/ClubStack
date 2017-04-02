@@ -1,0 +1,25 @@
+<template name="signin">
+    <div class="signin">
+        <div>
+            <img src="images/avatar-empty.png" alt="Avatar" class="img-responsive img-rounded center-block">
+        </div>
+        <form>
+            <div class="form-group" style="margin-top: 5px">
+                <label for="signinEmail" style="color: white">Email</label>
+                <input type="email" class="form-control" id="signinEmail" placeholder="Enter Email" required="true" maxlength="120"/>
+            </div>
+            <div class="form-group">
+                <label for="signinPass" style="color: white">Password</label>
+                <input type="password" class="form-control" id="signinPass" placeholder="Enter Password" required="true" minlength="5" maxlength="50"/>
+            </div>
+            <button class="btn btn-warning btn-block"><strong>Log In</strong></button>
+            <div class="form-group">
+            <div class="checkbox-inline">
+                <label class="label" style="color: white"> <input type="checkbox" checked="checked">Remember Me?</label>
+                <a href="#" style="font-size: x-small; color: #5ca8a5; padding-right: 7px"><u><strong>Forgot Password?</strong></u></a>
+                <a href="#" style="font-size: x-small; color: #5ca8a5"><u><strong>Sign Up?</strong></u></a>
+            </div>
+            </div>
+        </form>
+    </div>
+</template>
