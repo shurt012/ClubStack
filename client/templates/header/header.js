@@ -4,6 +4,7 @@
 
 Template.header.events({
     "click #nav-target a": () => {
-        $("#toggle-button").click();
+        if($(window).width < 768)
+            $("#toggle-button").click();
     }
 });
