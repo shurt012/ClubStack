@@ -17,7 +17,18 @@
     text-align: center;
     text-transform: capitalize;
 }
+#searchBar
+{
+    margin-top: 10em;
+}
+
 @media screen and (max-width: 767px) {
+    h2{
+        font-size: 1em;
+    }
+    #searchBar{
+        margin-top: 4em;
+    }
     #heading h1 {
         font-size: 1.5em;
     }
@@ -25,3 +36,4 @@
         padding: 5px 5px 5px 5px;
     }
 }
+

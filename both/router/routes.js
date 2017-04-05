@@ -45,6 +45,12 @@ FlowRouter.route("/admin", {
         FlowLayout.render("layout", {main: "admin"});
     }
 });
+FlowRouter.route("/messages", {
+    triggersEnter: loggedIn,
+    action: () => {
+        FlowLayout.render("layout", {main: "messages"});
+    }
+});
 FlowRouter.route("/forum", {
     triggersEnter: loggedIn,
     action: () => {
