@@ -1,2 +1,20 @@
-<template name="home">
+<template name="home" id="home">
+    {{#if loggingIn}}
+    {{else}}
+        {{#if currentUser}}
+            <div id="heading">
+                <h1><strong>Welcome, {{currentUser.profile.firstname}} {{currentUser.profile.lastname}}!</strong></h1>
+                <div id="regParagraph">
+                    <p>Ready to view you're upcoming <a href="#">events</a>?</p>
+                </div>
+            </div>
+        {{else}}
+            <div id="heading">
+                <h1><strong>Welcome, to FIU Clubs</strong></h1>
+                <div id="regParagraph">
+                    <p>Please <a href="register">register</a> to have full access to website.</p>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
 </template>
