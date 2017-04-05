@@ -8,10 +8,8 @@ Template.signin.events({
         document.getElementById("alerts").style.display = "none";
         const email = evt.target.signinEmail.value;
         const password = evt.target.signinPass.value;
-        Meteor.loginWithPassword(email,password, (err, res) => {
-            if(!err)
-                FlowRouter.go('/');
-            else {
+        Meteor.loginWithPassword(email,password, (err) => {
+            if(err) {
                 document.getElementById("alerts").innerHTML = "<div><strong>Log in credentials is incorrect! Please try again.</strong></div>";
                 document.getElementById("alerts").style.display = "inherit";
             }

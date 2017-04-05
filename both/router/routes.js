@@ -2,6 +2,10 @@
  * Created by Caciano on 3/29/2017.
  */
 
+Accounts.onLogin( () => {
+    FlowRouter.go("/home");
+});
+
 function loggedIn()
 {
     if(!Meteor.userId()) FlowRouter.go("/home");
