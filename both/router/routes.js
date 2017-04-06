@@ -2,10 +2,6 @@
  * Created by Caciano on 3/29/2017.
  */
 
-Accounts.onLogin( () => {
-    FlowRouter.go("/home");
-});
-
 function loggedIn()
 {
     if(!Meteor.userId()) FlowRouter.go("/home");
@@ -55,5 +51,11 @@ FlowRouter.route("/forum", {
     triggersEnter: loggedIn,
     action: () => {
         FlowLayout.render("layout", {main: "forum"});
+    }
+});
+FlowRouter.route("/calendar", {
+    triggersEnter: loggedIn,
+    action: () => {
+        FlowLayout.render("layout", {main: "calendar"});
     }
 });

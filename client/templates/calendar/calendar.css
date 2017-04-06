@@ -1,0 +1,30 @@
+table
+{
+    background-color: lightgray;
+    border: solid black 3px;
+}
+table th
+{
+    background-color: #dcecef;
+}
+table tr:first-child
+{
+    vertical-align: bottom;
+}
+table tr:not(:first-child)
+{
+    text-align: right;
+    vertical-align: text-top;
+}
+table td, tr
+{
+    height: 50px;
+    color: black;
+    border: solid black 1px;
+}
+
+@media screen and (max-width: 767px) {
+    table td, tr{
+        height: 30px;
+    }
+}

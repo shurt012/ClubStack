@@ -1,0 +1,26 @@
+<template name="calendar">
+    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id="calendar">
+        <table id="table" class="table" style="table-layout: fixed">
+            <tr>
+                <th scope="col">Su</th>
+                <th scope="col">Mo</th>
+                <th scope="col">Tu</th>
+                <th scope="col">We</th>
+                <th scope="col">Th</th>
+                <th scope="col">Fr</th>
+                <th scope="col">Sa</th>
+            </tr>
+            {{#each loop 6}}
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            {{/each}}
+        </table>
+    </div>
+</template>

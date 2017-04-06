@@ -14,5 +14,6 @@ Template.signin.events({
                 document.getElementById("alerts").style.display = "inherit";
             }
         });
+        FlowRouter.go("/");
     }
 });

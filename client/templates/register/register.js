@@ -42,6 +42,7 @@ Template.register.events({
             }else
                 Meteor.call("AssignRole");
         });
+        FlowRouter.go("/");
     }
 });
 
