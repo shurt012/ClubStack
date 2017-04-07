@@ -12,8 +12,8 @@ Template.signin.events({
             if(err) {
                 document.getElementById("alerts").innerHTML = "<div><strong>Log in credentials is incorrect! Please try again.</strong></div>";
                 document.getElementById("alerts").style.display = "inherit";
-            }
+            }else
+                FlowRouter.go("/");
         });
-        FlowRouter.go("/");
     }
 });
