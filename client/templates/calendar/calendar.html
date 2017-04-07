@@ -1,5 +1,22 @@
 <template name="calendar">
-    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-12 col-xs-12" id="calendar">
+    <div class="col-lg-10 col-lg-offset-1 col-md-8 col-md-offset-2 col-sm-12 col-xs-12">
+        <div class="heading">
+            <h4><strong>Upcoming Events:</strong></h4>
+            <p>Notifications can go here</p>
+            <p>Notifications can go here</p>
+            <p>Notifications can go here</p>
+        </div>
+        <div style="text-align: center; color: white" id="monthNav">
+            <h1>
+                <button type="button" class="btn btn-default" id="left">
+                    <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+                </button>
+                <span>{{month}}</span>
+                <button type="button" class="btn btn-default" id="right">
+                    <span class="glyphicon glyphicon-arrow-right" aria-hidden="true"></span>
+                </button>
+            </h1>
+        </div>
         <table id="table" class="table" style="table-layout: fixed">
             <tr>
                 <th scope="col">Su</th>

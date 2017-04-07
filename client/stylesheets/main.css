@@ -4,6 +4,17 @@ body{
     padding-top: 100px;
     background-color: #123456;
 }
+.heading
+{
+    background-color: #d1e4ee;
+    padding: 20px 40px 20px 40px;
+}
+.heading h1
+{
+    font-size: 3.5em;
+    text-align: center;
+    text-transform: capitalize;
+}
 @media screen and (max-width: 767px) {
     body{
         padding-top: 60px;
