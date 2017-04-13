@@ -16,27 +16,45 @@
                 {{#if loggingIn}}
                 {{else}}
                     {{#if currentUser}}
-                        <ul class="nav navbar-nav navbar-right" id="signout">
+                        <ul class="nav navbar-nav navbar-right colapseNavBtn" id="signout">
                             <li><a href="signout" style="color: #337ab7"><strong>Sign Out?</strong></a></li>
                         </ul>
                         <ul class="nav navbar-nav">
-                            <li><a href="home">Home</a></li>
-                            <li><a href="admin">Admin</a></li>
+                            <li class="colapseNavBtn"><a href="home">Home</a></li>
+                            <li class="dropdown">
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">Admin<span class="caret"></span></a>
+                                <ul class="dropdown-menu colapseNavBtn">
+                                    <li><a href="admin">Create a club?</a></li>
+                                    <li class="divider"></li>
+                                    <li><a href="admin">Update a club?</a></li>
+                                </ul>
+                            </li>
                             <li class="dropdown">
                                 <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">Enrollled<span class="caret"></span></a>
-                                <ul class="dropdown-menu"></ul>
+                                <ul class="dropdown-menu colapseNavBtn">
+                                    {{#if enrolled}}
+                                        {{#each enrolled}}
+                                            <li><a href="club">{{this}}</a></li>
+                                            <li class="divider"></li>
+                                        {{/each}}
+                                    {{else}}
+                                        <li style="text-align: center">Currently not enrolled in any clubs.</li>
+                                    {{/if}}
+                                </ul>
                             </li>
-                            <li><a href="calendar">Calendar</a></li>
-                            <li><a href="messages">Messages</a></li>
+                            <li class="colapseNavBtn"><a href="calendar">Calendar</a></li>
+                            <li class="colapseNavBtn"><a href="messages">Messages</a></li>
                         </ul>
                     {{else}}
-                        <ul class="nav navbar-nav">
-                            <li><a href="home">Home</a></li>
-                        </ul>
-                        <ul class="nav navbar-nav navbar-right">
-                            <li><a href="register">Register</a></li>
-                            <li><a href="signin">Sign In</a></li>
-                        </ul>
+                        <div class="colapseNavBtn">
+                            <ul class="nav navbar-nav">
+                                <li><a href="home">Home</a></li>
+                            </ul>
+                            <ul class="nav navbar-nav navbar-right">
+                                <li><a href="register">Register</a></li>
+                                <li><a href="signin">Sign In</a></li>
+                            </ul>
+                        </div>
                     {{/if}}
                 {{/if}}
             </div>

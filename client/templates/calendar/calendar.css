@@ -9,7 +9,7 @@ h4
 }
 #monthNav
 {
-    margin-top: 5em;
+    margin-top: 40px;
 }
 table
 {
@@ -35,5 +35,8 @@ table td, tr
 @media screen and (max-width: 767px) {
     table td, tr{
         height: 40px;
+    }
+    #monthNav {
+        margin-top: 20px;
     }
 }

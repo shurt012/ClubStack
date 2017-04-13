@@ -40,11 +40,7 @@ Template.register.events({
                 document.getElementById("alerts").innerHTML = "<div><Strong>An account with this email already exists!</Strong></div>";
                 document.getElementById("alerts").style.display = "inherit";
             }else
-            {
-                Meteor.call("AssignRole");
                 FlowRouter.go("/");
-            }
         });
     }
 });
-

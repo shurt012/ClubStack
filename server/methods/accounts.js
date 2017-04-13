@@ -3,6 +3,8 @@
  */
 
 Accounts.onCreateUser( (options, user) => {
+    if(!user.clubs) user.clubs = [];
+    if(!user.enrolled) user.enrolled = [];
     if(!user.profile) user.profile = {};
     user.profile.firstname = options.firstname;
     user.profile.lastname = options.lastname;
@@ -13,8 +15,4 @@ Accounts.validateNewUser( (user) => {
     return (/.*@fiu\.edu$/).test(user.emails[0].address) ? true : (() => {throw new Meteor.Error("Invalid Email", "Please use an FIU email.")});
 });
 
-Meteor.methods({
-    AssignRole: function() {
-        Roles.addUsersToRoles(this.userId, "defaultUser");
-    }
-});
+

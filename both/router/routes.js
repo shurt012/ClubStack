@@ -16,6 +16,9 @@ FlowRouter.route(["/", "/home"], {
         FlowLayout.render("layout", {main: "home"});
     }
 });
+
+//======================================================================================================================
+
 FlowRouter.route("/signin", {
     triggersEnter: loggedOut,
     action: () => {
@@ -35,6 +38,9 @@ FlowRouter.route("/signout", {
         FlowRouter.go("/home");
     }
 });
+
+//======================================================================================================================
+
 FlowRouter.route("/admin", {
     triggersEnter: loggedIn,
     action: () => {
@@ -47,15 +53,21 @@ FlowRouter.route("/messages", {
         FlowLayout.render("layout", {main: "messages"});
     }
 });
-FlowRouter.route("/forum", {
+FlowRouter.route("/chat", {
     triggersEnter: loggedIn,
     action: () => {
-        FlowLayout.render("layout", {main: "forum"});
+        FlowLayout.render("layout", {main: "chat"});
     }
 });
 FlowRouter.route("/calendar", {
     triggersEnter: loggedIn,
     action: () => {
         FlowLayout.render("layout", {main: "calendar"});
+    }
+});
+FlowRouter.route("/club", {
+    triggersEnter: loggedIn,
+    action: () => {
+        FlowLayout.render("layout", {main: "club"});
     }
 });
