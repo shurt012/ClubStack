@@ -61,29 +61,31 @@ Club.attachSchema(new SimpleSchema({
         label: "event",
         optional: true
     },
-    "event.title": {
+    "event.$": {
+        type: Object
+    },
+    "event.$.title": {
         type: String,
         max: 60,
     },
-    "event.info": {
+    "event.$.info": {
         type: String,
         max: 300
     },
-    "event.location": {
+    "event.$.location": {
         type: String,
-        max: 100,
-        optional: true
+        max: 100
     },
-    "event.date": {
+    "event.$.date": {
         type: Object,
     },
-    "event.date.year": {
+    "event.$.date.year": {
         type: Number
     },
-    "event.date.month": {
+    "event.$.date.month": {
         type: Number
     },
-    "event.date.day": {
+    "event.$.date.day": {
         type: Number
     },
     createdAt: {
