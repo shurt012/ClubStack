@@ -5,16 +5,18 @@ import { Messages } from '../../../imports/api/messages.js';
 import './messages.html';
 
 Template.body.helpers({
-    /*
+    
    chatmessages() {
+       console.log("Finding messages")
      return Messages.find();
    },
-   */
+   /*
   chatmessages: [
     { text: 'Hey there,' },
     { text: 'This is a test of data that would be stored in collections' },
     { text: 'Currently ironing out some issues..' },
-  ],   
+  ],  
+    */
 });
 
  Template.body.events({

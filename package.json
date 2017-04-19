@@ -5,6 +5,7 @@
     "start": "meteor run"
   },
   "dependencies": {
+    "autopublish": "0.0.7",
     "babel-runtime": "^6.23.0",
     "bcrypt": "^1.0.2",
     "insecure": "0.0.4",
