@@ -1,0 +1,48 @@
+<template name="messages">
+   <div class="container">
+     <div class="row">
+       <h3 class="text-center" style="color:#FFFFFF" >GROUP CHAT</h3>
+ 	   	<!-- text holder -->
+       <div class="col-md-12">
+ 		<!-- login button -->
+         <div class="panel panel-info">
+           <div class="panel-heading">
+             GROUP CHAT
+           </div>
+           <div class="panel-body">
+             <ul class="media-list">
+                 <li class="media">
+                     <div class="media-body">
+                         <div class="media">
+                             <a class="pull-left" href="#">
+                                 <img class="media-object img-circle img-responsive" src="https://lorempixel.com/60/60/people/" />
+                             </a>
+                             <div class="media-body" >
+                                 <br />
+                                 <!-- user information -->
+                                 <hr />
+                             </div>
+                         </div>
+                     </div>
+                 </li>
+               {{#each chatmessages}}
+                 {{text}}<br>
+               {{/each}}
+             </ul>
+           </div>
+           <!-- message textbox -->
+           <form class="new-message">
+             <div class="panel-footer">
+               <div class="input-group">
+                 <input type="text" name="text" class="form-control" placeholder="Enter Message" />
+                 <span class="input-group-btn">
+                   <button class="btn btn-info send" type="submit">SEND</button>
+                 </span>
+               </div>
+             </div>
+           </form>
+         </div>
+       </div>
+     </div>
+   </div>
+</template>

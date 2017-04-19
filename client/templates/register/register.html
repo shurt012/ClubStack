@@ -1,0 +1,31 @@
+<template name="register">
+    <div class="register">
+        <div>
+            <img src="images/avatar-empty.png" alt="Avatar" class="img-responsive img-rounded center-block">
+        </div>
+        <form>
+            <div class="form-group alert alert-danger" id="alerts" style="display: none"></div>
+            <div class="form-group" style="margin-top: 5px">
+                <label for="signinFirst" style="color: white">First Name</label>
+                <input type="text" class="form-control" id="signinFirst" placeholder="First Name" required="true" minlength="2" maxlength="60"/>
+            </div>
+            <div class="form-group">
+                <label for="signinLast" style="color: white">Last Name</label>
+                <input type="text" class="form-control" id="signinLast" placeholder="Last Name" required="true" minlength="2" maxlength="60"/>
+            </div>
+            <div class="form-group">
+                <label for="signinEmail" style="color: white">Email</label>
+                <input type="email" class="form-control" id="signinEmail" placeholder="Enter Email" required="true" maxlength="120"/>
+            </div>
+            <div class="form-group">
+                <label for="signinPass" style="color: white">Password</label>
+                <input type="password" class="form-control" id="signinPass" placeholder="Enter Password"  required="true" minlength="5" maxlength="50"/>
+            </div>
+            <div class="form-group">
+                <label for="signinPass" style="color: white">Confirm Password</label>
+                <input type="password" class="form-control" id="Confirm" placeholder="Confirm Password" required="true" minlength="5" maxlength="50"/>
+            </div>
+            <button class="btn btn-warning btn-block"><strong>Create Account</strong></button>
+        </form>
+    </div>
+</template>
