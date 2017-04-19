@@ -14,7 +14,7 @@ Template.home.events({
     "click #searchButton": function (event, template) {
         event.preventDefault();
         template.state.set(true);
-        let clubs = Club.find({keywords: $("#searchInput").val()}, {fields: {"Club Name": 1, _id: 0}}).fetch();
+        let clubs = Club.find({keywords: $("#searchInput").val().toUpperCase()}, {fields: {"Club Name": 1, _id: 0}}).fetch();
         $("#searchInput").val("");
         clubs.length > 0 ? (template.clubs.set(clubs), template.clubsPresent.set(true)) : (template.clubs.set([]), template.clubsPresent.set(false));
         $("#searchResults").css("display", "inline");

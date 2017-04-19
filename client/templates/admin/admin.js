@@ -50,7 +50,7 @@ Template.admin.events({
         let keywords = [];
         for(var i = 2; i <= 7; i++)
             if(values[i] != "")
-                keywords.push(values[i]);
+                keywords.push(values[i].toUpperCase());
 
         const club = {
             "Club Name": values[0],
