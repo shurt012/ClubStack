@@ -65,8 +65,17 @@ Template.admin.events({
 
         if( Club.findOne({"Club Name": values[0]}) )
         {
-            template.err.set("Club Name already exists!");
-            document.getElementById("adminAlerts").style.display = "inherit";
+            // template.err.set("Club Name already exists!");
+            // document.getElementById("adminAlerts").style.display = "inherit";
+            Meteor.call("updateClub",club, (err, result) => {
+                if(err) {
+                    template.err.set(err);
+                    document.getElementById("adminAlerts").style.display = "inherit";
+                }else {
+                    Meteor.call("clubOwner");
+                    FlowRouter.go("/");
+                }
+            });
         }else if(keywords.length < 1)
         {
             template.err.set("Must enter at least one keyword!");
