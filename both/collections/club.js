@@ -77,16 +77,25 @@ Club.attachSchema(new SimpleSchema({
         max: 100
     },
     "event.$.date": {
-        type: Object,
+        type: Object
     },
     "event.$.date.year": {
-        type: Number
+        type: Number,
+        min: () => {
+            return new Date().getFullYear() - 1;
+        },
+        max: () => {
+            return new Date().getFullYear() + 1;
+        }
     },
     "event.$.date.month": {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 12
     },
     "event.$.date.day": {
-        type: Number
+        type: Number,
+        min: 1
     },
     createdAt: {
         type: Date,
