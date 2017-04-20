@@ -29,3 +29,5 @@ aldeed:collection2-core
 aldeed:schema-index
 session
 insecure
+autopublish
+cesarve:simple-chat

@@ -1,14 +1,26 @@
+/**
+ * Created by Edward on 4/19/2017.
+ */
+
+
 import { Template } from 'meteor/templating';
 import { Messages } from '../../../imports/api/messages.js';
 
 
 import './messages.html';
 
-Template.body.helpers({
+Template.messages.helpers({
     
    chatmessages() {
        console.log("Finding messages")
      return Messages.find();
+   },
+   
+   chatname:()=> {
+       let clubname = this.params.query.club;
+       
+       console.log(clubname);
+       return clubname;
    },
    /*
   chatmessages: [
@@ -19,7 +31,7 @@ Template.body.helpers({
     */
 });
 
- Template.body.events({
+ Template.messages.events({
    'submit .new-message'(event) {
      // Prevent default browser form submit
      event.preventDefault();
@@ -33,7 +45,8 @@ Template.body.helpers({
        createdAt: new Date(), // current time
  	 //user information
      //TODO: Get user account details
-        // owner: Meteor.userId(), username:Meteor.user().username,
+         owner: Meteor.userId(), 
+         username:Meteor.user().username,
      });
      
      //This does not work..
