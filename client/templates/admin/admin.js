@@ -5,9 +5,8 @@ import Club from "/both/collections/club";
 
 Template.admin.onCreated(function () {
     this.err = new ReactiveVar("");
-    this.subscribe("Events");
 });
-
+console.log(Club.find())
 Template.admin.onRendered( () => {
     const email = document.getElementsByClassName("contactEmail")[0];
     const phone = document.getElementsByClassName("contactPhone")[0];

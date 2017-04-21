@@ -12,7 +12,6 @@ Accounts.onCreateUser( (options, user) => {
 });
 
 Accounts.validateNewUser( (user) => {
-    Meteor.users.update({_id: Meteor.userId}, {$push: {enrolled: "chess"}});
     return (/.*@fiu\.edu$/).test(user.emails[0].address) ? true : (() => {throw new Meteor.Error("Invalid Email", "Please use an FIU email.")});
 });
 
