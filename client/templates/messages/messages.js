@@ -5,30 +5,64 @@
 
 import { Template } from 'meteor/templating';
 import { Messages } from '../../../imports/api/messages.js';
-
+import Club from "../../../both/collections/club";
 
 import './messages.html';
 
+
+Template.messages.onCreated(function(){
+    this.clubs = new ReactiveVar([]);
+    this.state = new ReactiveVar(true);
+    this.clubsPresent = new ReactiveVar(false);
+});
+
+/*
+FlowRouter.route('/:messages?', {
+    // do some action for this route
+    action: function(params, queryParams) {
+        console.log("Params:", params);
+        console.log("Query Params:", queryParams);
+        if ( params == "club" )
+        {
+            if ( queryParams == "Japan" )
+            {
+                console.log("Found!");
+            }
+        }
+    },
+
+    //name: "<name for the route>" // optional
+});
+*/
+
 Template.messages.helpers({
-    
+      
    chatmessages() {
        console.log("Finding messages")
      return Messages.find();
    },
    
    chatname:()=> {
-       let clubname = this.params.query.club;
+       let clubname = FlowRouter.getQueryParam("club");
        
-       console.log(clubname);
+       //console.log(clubname);
        return clubname;
    },
-   /*
-  chatmessages: [
-    { text: 'Hey there,' },
-    { text: 'This is a test of data that would be stored in collections' },
-    { text: 'Currently ironing out some issues..' },
-  ],  
-    */
+   
+    getClubs: () => {
+        let state = Template.instance().state.get();
+        let query = Template.instance().clubs.get();
+
+        if(state)
+            return query.length > 0 ? getNames(query) : ["No clubs match this keyword."];
+        else
+            return query.length > 0 ? getNames(query) : ["No clubs have been created yet."];
+    },
+    
+    clubsPresent: () => {
+        return Template.instance().clubsPresent.get();
+    },   
+    
 });
 
  Template.messages.events({
@@ -49,19 +83,39 @@ Template.messages.helpers({
          username:Meteor.user().username,
      });
      
-     //This does not work..
-     /*
-     Messages.allow({
-         insert: function(text) {
-             return true;
-         }
-         
-     });
-     */
      
      // Clear form
      target.text.value = '';
      // scroll to last message
      $('.panel-body').scrollTop($('.media-list').height())
 	},
+    
+    
+    "click #searchButton": function (event, template) {
+        event.preventDefault();
+        template.state.set(true);
+        let clubs = Club.find({keywords: $("#searchInput").val().toUpperCase()}, {fields: {"Club Name": 1, _id: 0}}).fetch();
+        $("#searchInput").val("");
+        clubs.length > 0 ? (template.clubs.set(clubs), template.clubsPresent.set(true)) : (template.clubs.set([]), template.clubsPresent.set(false));
+        $("#searchResults").css("display", "inline");
+    },
+    "click #allClubs": function (event, template) {
+        event.preventDefault();
+        template.state.set(false);
+        let clubs = Club.find({}, {fields: {"Club Name": 1, _id: 0}}).fetch();
+        $("#searchInput").val("");
+        clubs.length > 0 ? (template.clubs.set(clubs), template.clubsPresent.set(true)) : (template.clubs.set([]), template.clubsPresent.set(false));
+        $("#searchResults").css("display", "inline");
+    },
+    "click, dblclick, keydown, keyup, keypress": (event) => {
+        if(event.target.id != "searchButton") $("#searchResults").css("display", "none");
+    },         
  });
+ 
+function getNames(object)
+{
+    let array = [];
+    for(let i = 0; i < object.length; i++)
+        array.push( object[i]["Club Name"]);
+    return array;
+}

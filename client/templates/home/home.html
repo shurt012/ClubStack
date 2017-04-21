@@ -45,7 +45,7 @@
                             {{#if clubsPresent}}
                                 {{#each getClubs}}
                                     <li class="list-group-item" style="background-color: #dbe7ee; text-align: center">
-                                        <a href="club">{{this}}</a>
+                                        <a href="club?clubname={{this}}">{{this}}</a>
                                     </li>
                                 {{/each}}
                             {{else}}
