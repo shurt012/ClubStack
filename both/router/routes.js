@@ -52,7 +52,8 @@ FlowRouter.route("/admin", {
         FlowLayout.render("layout", {main: "admin"});
     }
 });
-FlowRouter.route("/messages", {
+FlowRouter.route(["/messages", "/messages/:roomId"], {
+    name: "messages",
     triggersEnter: loggedIn,
     action: () => {
         FlowLayout.render("layout", {main: "messages"});

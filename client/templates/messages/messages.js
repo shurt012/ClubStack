@@ -2,13 +2,9 @@
  * Created by Edward on 4/19/2017.
  */
 
-
-import { Template } from 'meteor/templating';
 import { Messages } from '../../../both/collections/messages.js';
+import {SimpleChat} from 'meteor/cesarve:simple-chat/config';
 import Club from "../../../both/collections/club";
-
-import './messages.html';
-
 
 Template.messages.onCreated(function(){
     this.clubs = new ReactiveVar([]);
@@ -19,7 +15,6 @@ Template.messages.onCreated(function(){
 Template.messages.helpers({
       
    chatmessages() {
-       console.log("Finding messages")
      return Messages.find();
    },
    
@@ -69,6 +64,9 @@ Template.messages.helpers({
      $('.panel-body').scrollTop($('.media-list').height())
 	},
 
+    "click #clubParam a": (event) => {
+       location.reload();
+    },
     "click #allClubs": function (event, template) {
         event.preventDefault();
         template.state.set(false);
