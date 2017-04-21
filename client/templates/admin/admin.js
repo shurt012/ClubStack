@@ -32,7 +32,7 @@ Template.admin.onRendered( () => {
     phone.onchange = validatePhone;
     email.onchange = validateEmail;
 });
-console.log(Meteor.users.findOne({_id: Meteor.userId}, {fields: {enrolled: 1}}));
+
 Template.admin.helpers({
     err: function() {
         return Template.instance().err.get();

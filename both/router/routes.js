@@ -58,12 +58,6 @@ FlowRouter.route("/messages", {
         FlowLayout.render("layout", {main: "messages"});
     }
 });
-FlowRouter.route("/chat", {
-    triggersEnter: loggedIn,
-    action: () => {
-        FlowLayout.render("layout", {main: "chat"});
-    }
-});
 FlowRouter.route("/calendar", {
     triggersEnter: loggedIn,
     action: () => {

@@ -1,3 +1,43 @@
-<template name="messages">
+<template name="messages" id="messages">
+
+
+<h3 align='center' style='color:#5bc0de'>{{chatname}} Chat Room</h3>
+{{>SimpleChatWindow roomId=chatname username=currentUser.profile.firstname limit=limit}}
+
+
+    <!--Clubs the user is enrolled in-->
+    <div class="form-group">
+        <div>
+            <a href="" id="allClubs" style="font-size: x-small; color: #5bc0de"><u><strong>Show all Chat Rooms</strong></u></a>
+        </div>
+    </div>    
+    
+    <div class="row" id="searchResults" style="display: none">
+        <div class="col-lg-4 col-lg-offset-4 col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1 col-xs-10 col-xs-offset-1">
+            <div class="panel panel-default">
+                <div class="panel-heading" style="background-color: #d1e4ee">
+                    <h3 class="panel-title"><strong>Results:</strong></h3>
+                    <div class="panel-body" style="background-color: #d1e4ee;height:100px;">
+                        <ul class="list-group">
+                            {{#if clubsPresent}}
+                                {{#each getClubs}}
+                                    <li class="list-group-item" style="background-color: #dbe7ee; text-align: center">
+                                        <a href="messages?club={{this}}">{{this}}</a>
+                                    </li>
+                                {{/each}}
+                            {{else}}
+                                {{#each getClubs}}
+                                    <li class="list-group-item" style="color: black; background-color: #dbe7ee; text-align: center">
+                                        {{this}}
+                                    </li>
+                                {{/each}}
+                            {{/if}}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </template>
