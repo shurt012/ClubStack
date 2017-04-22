@@ -1,9 +1,5 @@
 import Club from "/both/collections/club";
 
-Template.club.onCreated(function () {
-    this.subscribe("enrolled");
-});
-
 Template.club.helpers({
     enrolled: () => {
         return Meteor.user().enrolled.includes(FlowRouter.getQueryParam("clubname"));

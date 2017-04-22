@@ -4,4 +4,5 @@
 
 Template.layout.onCreated( function(){
     this.subscribe("ClubNames");
+    this.subscribe("enrolled");
 });
