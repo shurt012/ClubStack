@@ -15,8 +15,5 @@ Meteor.methods({
     },
     insertClub: function(doc) {
         Club.insert(doc);
-    },
-    updateClub: function(doc) {
-        Club.update({"Club Name": doc["Club Name"]}, {$set: doc});
     }
 });

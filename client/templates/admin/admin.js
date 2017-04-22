@@ -2,11 +2,12 @@
  * Created by Caciano on 4/7/2017.
  */
 import Club from "/both/collections/club";
+import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.admin.onCreated(function () {
     this.err = new ReactiveVar("");
 });
-console.log(Club.find())
+
 Template.admin.onRendered( () => {
     const email = document.getElementsByClassName("contactEmail")[0];
     const phone = document.getElementsByClassName("contactPhone")[0];
@@ -66,6 +67,7 @@ Template.admin.events({
         if( Club.findOne({"Club Name": values[0]}) )
         {
             template.err.set("Club Name already exists!");
+            console.log(template.err)
             document.getElementById("adminAlerts").style.display = "inherit";
         }else if(keywords.length < 1)
         {

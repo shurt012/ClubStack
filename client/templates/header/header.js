@@ -4,8 +4,7 @@
 
 Template.header.helpers({
     enrolled: () => {
-        let query = Meteor.users.find({_id: Meteor.userId()}, {fields: {enrolled: 1}}).fetch();
-        return query[0].enrolled;
+        return Meteor.user().enrolled;
     }
 });
 
