@@ -74,8 +74,9 @@ Club.attachSchema(new SimpleSchema({
     },
     "event.$.time": {
         type: String,
-        min: 4,
-        max: 5
+        regEx: /(^1[0-2]|^[1-9]):[0-5]\d(A|P)M$/, //matches 1:30AM or 12:59PM format, i.e length is 6 or 7
+        min: 6,
+        max: 7
     },
     "event.$.date": {
         type: Object
@@ -96,7 +97,8 @@ Club.attachSchema(new SimpleSchema({
     },
     "event.$.date.day": {
         type: Number,
-        min: 1
+        min: 1,
+        max: 31
     },
     createdAt: {
         type: Date,

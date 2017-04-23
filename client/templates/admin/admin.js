@@ -63,7 +63,7 @@ Template.admin.events({
                 "phone": values[10]
             }
         };
-
+        
         if( Club.findOne({"Club Name": values[0]}) )
         {
             template.err.set("Club Name already exists!");
