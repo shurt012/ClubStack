@@ -7,7 +7,7 @@ Template.updateclub.onCreated(function () {
     this.err = new ReactiveVar("");
 });
 
-Template.updateclub.onRendered( () => {
+Template.updateclub.onRendered( function() {
     const email = document.getElementsByClassName("contactEmail")[0];
     const phone = document.getElementsByClassName("contactPhone")[0];
 
@@ -27,11 +27,9 @@ Template.updateclub.onRendered( () => {
             email.setCustomValidity("Must use an FIU email address!");
         else
             email.setCustomValidity("");
-        }
+    }
 
-      let name = window.location.href.match(/\?club=(.*)/);
-      document.getElementById("clubName").value = name[1];
-
+    document.getElementById("clubName").value = FlowRouter.getQueryParam("club");
 
     phone.onchange = validatePhone;
     email.onchange = validateEmail;
@@ -40,6 +38,10 @@ Template.updateclub.onRendered( () => {
 Template.updateclub.helpers({
     err: function() {
         return Template.instance().err.get();
+    },
+    Url: () => {
+        document.getElementById("clubName").value = FlowRouter.getQueryParam("club");
+        return FlowRouter.getQueryParam("club");
     }
 });
 
