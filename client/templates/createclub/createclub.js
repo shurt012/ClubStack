@@ -3,11 +3,11 @@
  */
 import Club from "/both/collections/club";
 
-Template.admin.onCreated(function () {
+Template.createclub.onCreated(function () {
     this.err = new ReactiveVar("");
 });
 
-Template.admin.onRendered( () => {
+Template.createclub.onRendered( () => {
     const email = document.getElementsByClassName("contactEmail")[0];
     const phone = document.getElementsByClassName("contactPhone")[0];
 
@@ -33,13 +33,13 @@ Template.admin.onRendered( () => {
     email.onchange = validateEmail;
 });
 
-Template.admin.helpers({
+Template.createclub.helpers({
     err: function() {
         return Template.instance().err.get();
     }
 });
 
-Template.admin.events({
+Template.createclub.events({
     "submit form": (event, template) => {
         event.preventDefault();
 
@@ -66,11 +66,11 @@ Template.admin.events({
         if( Club.findOne({"Club Name": values[0]}) )
         {
             // template.err.set("Club Name already exists!");
-            // document.getElementById("adminAlerts").style.display = "inherit";
+            // document.getElementById("createclubAlerts").style.display = "inherit";
             Meteor.call("updateClub",club, (err, result) => {
                 if(err) {
                     template.err.set(err);
-                    document.getElementById("adminAlerts").style.display = "inherit";
+                    document.getElementById("createclubAlerts").style.display = "inherit";
                 }else {
                     Meteor.call("clubOwner");
                     FlowRouter.go("/");
@@ -79,13 +79,13 @@ Template.admin.events({
         }else if(keywords.length < 1)
         {
             template.err.set("Must enter at least one keyword!");
-            document.getElementById("adminAlerts").style.display = "inherit";
+            document.getElementById("createclubAlerts").style.display = "inherit";
         }
         else
             Meteor.call("insertClub",club, (err, result) => {
                 if(err) {
                     template.err.set(err);
-                    document.getElementById("adminAlerts").style.display = "inherit";
+                    document.getElementById("createclubAlerts").style.display = "inherit";
                 }else {
                     Meteor.call("clubOwner");
                     FlowRouter.go("/");

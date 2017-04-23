@@ -7,7 +7,7 @@
 {
     font-size: 5em;
 }
-#adminForm label
+#updateclubForm label
 {
     color: white;
 }
@@ -30,10 +30,10 @@
 }
 
 @media screen and (min-width: 768px) {
-    #adminTitle {
+    #updateclubTitle {
         margin-top: -80px;
     }
-    #adminForm {
+    #updateclubForm {
         margin-bottom: -60px;
     }
 }

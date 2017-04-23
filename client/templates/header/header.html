@@ -21,12 +21,15 @@
                         </ul>
                         <ul class="nav navbar-nav">
                             <li class="colapseNavBtn"><a href="home">Home</a></li>
+                            <li class="colapseNavBtn"><a href="createclub">Create a club</a></li>
                             <li class="dropdown">
-                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">Admin<span class="caret"></span></a>
+                                <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button">Update a club<span class="caret"></span></a>
                                 <ul class="dropdown-menu colapseNavBtn">
-                                    <li><a href="admin">Create a club?</a></li>
-                                    <li class="divider"></li>
-                                    <li><a href="admin">Update a club?</a></li>
+
+                                        {{#each adminOf}}
+                                        <li class="divider"></li>
+                                        <li class="colapseNavBtn"><a href="updateclub?club={{this}}">{{this}}</a></li>
+                                        {{/each}}
                                 </ul>
                             </li>
                             <li class="dropdown">
@@ -61,5 +64,3 @@
         </div>
     </nav>
 </template>
-
-

@@ -5,5 +5,5 @@
 import Club from "/both/collections/club";
 
 Meteor.publish("ClubNames", function(){
-    return Club.find({}, {fields: {"Club Name": 1, keywords: 1}});
+    return Club.find({}, {fields: {"Club Name": 1, keywords: 1, admin: 1}});
 });

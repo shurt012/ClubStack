@@ -46,10 +46,16 @@ FlowRouter.route("/signout", {
         FlowRouter.go("/home");
     }
 });
-FlowRouter.route("/admin", {
+FlowRouter.route("/createclub", {
     triggersEnter: loggedIn,
     action: () => {
-        FlowLayout.render("layout", {main: "admin"});
+        FlowLayout.render("layout", {main: "createclub"});
+    }
+});
+FlowRouter.route("/updateclub", {
+    triggersEnter: loggedIn,
+    action: () => {
+        FlowLayout.render("layout", {main: "updateclub"});
     }
 });
 FlowRouter.route("/messages", {
