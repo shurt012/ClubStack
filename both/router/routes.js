@@ -59,15 +59,10 @@ FlowRouter.route("/updateclub", {
     }
 });
 FlowRouter.route("/messages", {
+    name: "messages",
     triggersEnter: loggedIn,
     action: () => {
         FlowLayout.render("layout", {main: "messages"});
-    }
-});
-FlowRouter.route("/chat", {
-    triggersEnter: loggedIn,
-    action: () => {
-        FlowLayout.render("layout", {main: "chat"});
     }
 });
 FlowRouter.route("/calendar", {

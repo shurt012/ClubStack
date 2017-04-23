@@ -6,8 +6,7 @@ import Club from "/both/collections/club";
 
 Template.header.helpers({
     enrolled: () => {
-        let query = Meteor.users.find({_id: Meteor.userId()}, {fields: {enrolled: 1}}).fetch();
-        return query[0].enrolled;
+        return Meteor.user().enrolled;
     },
     adminOf: () => {
       let clubs = Club.find({admin: Meteor.userId()}, {fields: {"Club Name": 1}}).fetch();

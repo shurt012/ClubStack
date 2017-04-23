@@ -25,7 +25,7 @@ Club.attachSchema(new SimpleSchema({
     },
     description: {
         type: String,
-        max: 500
+        max: 300
     },
     admin: {
         type: String,
@@ -35,26 +35,22 @@ Club.attachSchema(new SimpleSchema({
     },
     contact: {
         type: Object,
-        label: "contact info",
-        optional: true
+        label: "contact info"
     },
     "contact.name": {
         type: String,
-        max: 50,
-        optional: true,
+        max: 50
     },
     "contact.email": {
         type: String,
         regEx: /.*@fiu\.edu$/,
-        max: 50,
-        optional: true,
+        max: 50
     },
     "contact.phone": {
         type: String,
         regEx: /\d\d\d-\d\d\d-\d\d\d\d/,
         min: 12,
-        max: 12,
-        optional: true,
+        max: 12
     },
     event: {
         type: Array,
@@ -76,17 +72,31 @@ Club.attachSchema(new SimpleSchema({
         type: String,
         max: 100
     },
+    "event.$.time": {
+        type: String,
+        min: 4,
+        max: 5
+    },
     "event.$.date": {
-        type: Object,
+        type: Object
     },
     "event.$.date.year": {
-        type: Number
+        type: Number,
+        min: () => {
+            return new Date().getFullYear() - 1;
+        },
+        max: () => {
+            return new Date().getFullYear() + 1;
+        }
     },
     "event.$.date.month": {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 12
     },
     "event.$.date.day": {
-        type: Number
+        type: Number,
+        min: 1
     },
     createdAt: {
         type: Date,

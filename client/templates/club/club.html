@@ -1,3 +1,28 @@
 <template name="club">
-
+    <div class="heading">
+        <h1><strong>{{name}}</strong></h1>
+        <div id="regParagraph">
+            <p>{{description}}</p>
+        </div>
+    </div>
+    <div class="jumbotron" style="margin-top: 5vh; background-color: #d9dee0">
+        {{#if currentUser}}
+            {{#if Template.subscriptionsReady}}
+                {{#if enrolled}}
+                    <div style="text-align: center" id="unenroll">
+                        <button class="btn btn-info" type="button">Enrolled, do you wish to unenroll?  <span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+                    </div>
+                {{else}}
+                    <div style="text-align: center" id="enroll">
+                        <button class="btn btn-info" type="button">Enroll in this Club?   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                    </div>
+                {{/if}}
+            {{/if}}
+        {{else}}
+            <div style="text-align: center" id="unenroll">
+                <button class="btn btn-info" type="button"><a href="signin" style="color: white;">Enroll in this Club?</a></button>
+            </div>
+        {{/if}}
+        <h3><strong><u>Events:</u></strong></h3>
+    </div>
 </template>

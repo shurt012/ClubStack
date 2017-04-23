@@ -2,6 +2,7 @@
  * Created by Caciano on 4/7/2017.
  */
 import Club from "/both/collections/club";
+import { ReactiveVar } from 'meteor/reactive-var';
 
 Template.createclub.onCreated(function () {
     this.err = new ReactiveVar("");
@@ -65,17 +66,9 @@ Template.createclub.events({
 
         if( Club.findOne({"Club Name": values[0]}) )
         {
-            // template.err.set("Club Name already exists!");
-            // document.getElementById("createclubAlerts").style.display = "inherit";
-            Meteor.call("updateClub",club, (err, result) => {
-                if(err) {
-                    template.err.set(err);
-                    document.getElementById("createclubAlerts").style.display = "inherit";
-                }else {
-                    Meteor.call("clubOwner");
-                    FlowRouter.go("/");
-                }
-            });
+            template.err.set("Club Name already exists!");
+            console.log(template.err)
+            document.getElementById("adminAlerts").style.display = "inherit";
         }else if(keywords.length < 1)
         {
             template.err.set("Must enter at least one keyword!");
