@@ -2,13 +2,12 @@
  * Created by Caciano on 4/7/2017.
  */
 import Club from "/both/collections/club";
-import { ReactiveVar } from 'meteor/reactive-var';
 
-Template.admin.onCreated(function () {
+Template.updateclub.onCreated(function () {
     this.err = new ReactiveVar("");
 });
 
-Template.admin.onRendered( () => {
+Template.updateclub.onRendered( () => {
     const email = document.getElementsByClassName("contactEmail")[0];
     const phone = document.getElementsByClassName("contactPhone")[0];
 
@@ -30,17 +29,21 @@ Template.admin.onRendered( () => {
             email.setCustomValidity("");
         }
 
+      let name = window.location.href.match(/\?club=(.*)/);
+      document.getElementById("clubName").value = name[1];
+
+
     phone.onchange = validatePhone;
     email.onchange = validateEmail;
 });
 
-Template.admin.helpers({
+Template.updateclub.helpers({
     err: function() {
         return Template.instance().err.get();
     }
 });
 
-Template.admin.events({
+Template.updateclub.events({
     "submit form": (event, template) => {
         event.preventDefault();
 
@@ -63,26 +66,23 @@ Template.admin.events({
                 "phone": values[10]
             }
         };
-        
+
         if( Club.findOne({"Club Name": values[0]}) )
         {
-            template.err.set("Club Name already exists!");
-            console.log(template.err)
-            document.getElementById("adminAlerts").style.display = "inherit";
-        }else if(keywords.length < 1)
-        {
-            template.err.set("Must enter at least one keyword!");
-            document.getElementById("adminAlerts").style.display = "inherit";
-        }
-        else
-            Meteor.call("insertClub",club, (err, result) => {
+            Meteor.call("updateClub",club, (err, result) => {
                 if(err) {
                     template.err.set(err);
-                    document.getElementById("adminAlerts").style.display = "inherit";
+                    document.getElementById("updateclubAlerts").style.display = "inherit";
                 }else {
                     Meteor.call("clubOwner");
                     FlowRouter.go("/");
                 }
             });
+        } else (keywords.length < 1)
+        {
+            template.err.set("Must enter at least one keyword!");
+            document.getElementById("updateclubAlerts").style.display = "inherit";
+        }
+
     }
 });
