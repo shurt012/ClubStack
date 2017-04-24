@@ -9,6 +9,15 @@ Template.club.helpers({
     },
     description: () => {
         return Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {description: 1}}).description;
+    },
+    admin: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {"contact.name": 1}}).contact.name;
+    },
+    email: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {"contact.email": 1}}).contact.email;
+    },
+    phone: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {"contact.phone": 1}}).contact.phone;
     }
 });
 

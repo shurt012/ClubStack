@@ -5,6 +5,7 @@ import Club from "/both/collections/club";
 
 Template.updateclub.onCreated(function () {
     this.err = new ReactiveVar("");
+    this.event = new ReactiveVar(false);
 });
 
 Template.updateclub.onRendered( function() {
@@ -34,8 +35,26 @@ Template.updateclub.onRendered( function() {
 });
 
 Template.updateclub.helpers({
+    loop: (num) => {
+        let array = [];
+        for(let i = 0; i < num; i++)
+            array.push({
+                hour: i + 1,
+                min: i * 10,
+                year: () => {
+                    let date = new Date();
+                    return date.getFullYear() + i;
+                },
+                month: i + 1,
+                day: i + 1
+            });
+        return array;
+    },
     err: function() {
         return Template.instance().err.get();
+    },
+    isEvent: () => {
+        return Template.instance().event.get();
     },
     Url: () => {
         return FlowRouter.getQueryParam("club");
@@ -79,7 +98,48 @@ Template.updateclub.helpers({
 });
 
 Template.updateclub.events({
-    "submit form": (event, template) => {
+    "click #eventButton button": (event, template) => {
+        $("#eventButton").css("display", "none");
+        $("#cancelEvent").css("display", "inherit");
+        template.event.set(true);
+    },
+    "click #cancelEvent button": (event, template) => {
+        $("#cancelEvent").css("display", "none");
+        $("#eventButton").css("display", "inherit");
+        template.event.set(false);
+    },
+    "submit #eventContainer form": (Event, template) => {
+        Event.preventDefault();
+        const values = $("form input, textarea, select").map(function(){
+            return $(this).val();
+        }).get();
+
+        let keywords = [];
+        for(let i = 0; i < 9; i++)
+            keywords.push(values[i]);
+        const event = {
+            title: values[0],
+            info: values[1],
+            location: values[2],
+            time: values[4] === "0"  ? `${values[3]}:00${values[5]}` : `${values[3]}:${values[4]}${values[5]}`,
+            date: {
+                year: values[6],
+                month: values[7],
+                day: values[8]
+            }
+        };
+
+        let date = new Date(event.date.year, event.date.month - 1, event.date.day);
+        if(date.getMonth() != event.date.month - 1)
+        {
+            template.err.set("You entered an invalid date!");
+            document.getElementById("updateclubAlerts").style.display = "inherit";
+        }else
+        {
+            document.getElementById("updateclubAlerts").style.display = "none";
+        }
+    },
+    "submit #clubContainer form": (event, template) => {
         event.preventDefault();
         const values = $("form input, textarea").map(function(){
             return $(this).val();

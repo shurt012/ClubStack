@@ -1,4 +1,4 @@
-#createclubForm label
+#createclubForm label, #updateClubForm label, #addEvent label
 {
     color: white;
 }
@@ -8,7 +8,6 @@
     margin-right: 30px;
     margin-bottom: 30px;
 }
-
 @media screen and (max-width: 767px) {
     .club h1 {
         font-size: 3em;
@@ -18,8 +17,12 @@
         margin-right: 10px;
         margin-bottom: 10px;
     }
+    #addEvent select
+    {
+        width: 70px;
+        margin: 0px 10px 20px 0px;
+    }
 }
-
 @media screen and (min-width: 768px) {
     #createclubTitle, #updateclubTitle {
         margin-top: -80px;
@@ -27,25 +30,34 @@
     #createclubForm {
         margin-bottom: -60px;
     }
+    #eventLocationContainer
+    {
+        margin-bottom: 30px;
+    }
+    #addEvent select
+    {
+        width: 120px;
+        margin: 0px 40px 30px 0px;
+    }
 }
 
 /* specific to update club */
 
-.updateClub ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+#updateClubForm ::-webkit-input-placeholder { /* WebKit, Blink, Edge */
     color:    black;
     font-weight: bold;
 }
-.updateClub :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
-    color:    black;
-    font-weight: bold;
-    opacity:  1;
-}
-.updateClub ::-moz-placeholder { /* Mozilla Firefox 19+ */
+#updateClubForm :-moz-placeholder { /* Mozilla Firefox 4 to 18 */
     color:    black;
     font-weight: bold;
     opacity:  1;
 }
-.updateClub :-ms-input-placeholder { /* Internet Explorer 10-11 */
+#updateClubForm ::-moz-placeholder { /* Mozilla Firefox 19+ */
+    color:    black;
+    font-weight: bold;
+    opacity:  1;
+}
+#updateClubForm :-ms-input-placeholder { /* Internet Explorer 10-11 */
     color:    black;
     font-weight: bold;
 }

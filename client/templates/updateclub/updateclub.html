@@ -3,36 +3,116 @@
         <div id="updateclubTitle">
             <h1 style="color: white; text-align: center; margin-bottom: 50px; font-size: 5em">Update {{Url}}</h1>
         </div>
-        <form class="form" id="createclubForm">
-            <div class="form-group alert alert-danger" id="updateclubAlerts" style="display: none"><Strong>{{err}}</Strong></div>
-            <div class="form-group">
-                <label for="description"><strong>Club Description:</strong></label>
-                <textarea rows="3" class="form-control" id="description" placeholder="{{description}}" maxlength="300"></textarea>
-            </div>
-            <div class="form-inline">
-                <label for="keywords"><strong>Enter Keywords: </strong><i>(At least one keyword required)</i></label><br>
-                <div class="form-group">
-                    <div class="input-group" id="placeholders">
-                        <input id="keywords" name="key1" type="text" class="form-control" placeholder={{keyword1}} maxlength="50">
-                        <input id="keywords" name="key2" type="text" class="form-control" placeholder={{keyword2}} maxlength="50">
-                        <input id="keywords" name="key3" type="text" class="form-control" placeholder={{keyword3}} maxlength="50">
-                        <input id="keywords" name="key4" type="text" class="form-control" placeholder={{keyword4}} maxlength="50">
-                        <input id="keywords" name="key5" type="text" class="form-control" placeholder={{keyword5}} maxlength="50">
-                        <input id="keywords" name="key6" type="text" class="form-control" placeholder={{keyword6}} maxlength="50">
+        <div style="text-align: center; margin-bottom: 25px" id="eventButton">
+            <button type="button" class="btn btn-info btn-lg">Add an Event?</button>
+        </div>
+        <div style="text-align: center; margin-bottom: 25px; display: none" id="cancelEvent">
+            <button type="button" class="btn btn-danger btn-lg">Cancel Event?</button>
+        </div>
+        {{#unless isEvent}}
+            <div id="clubContainer">
+                <form class="form" id="updateClubForm">
+                    <div class="form-group alert alert-danger" id="updateclubAlerts" style="display: none"><Strong>{{err}}</Strong></div>
+                    <div class="form-group">
+                        <label for="description"><strong>Club Description:</strong></label>
+                        <textarea rows="3" class="form-control" id="description" placeholder="{{description}}" maxlength="300"></textarea>
                     </div>
-                </div>
-            </div>
-            <div class="form-inline">
-                <label for="contact"><strong>Contact: </strong></label>
-                <div class="form-group">
-                    <div class="input-group">
-                        <input id="contactName" type="text" class="form-control" placeholder="{{name}}" maxlength="50">
-                        <input id="contactEmail" type="email" class="form-control contactEmail" placeholder="{{email}}" maxlength="50">
-                        <input id="contactPhone" type="text" class="form-control contactPhone" placeholder="{{phone}}">
+                    <div class="form-inline">
+                        <label for="keywords"><strong>Enter Keywords: </strong><i>(At least one keyword required)</i></label><br>
+                        <div class="form-group">
+                            <div class="input-group" id="placeholders">
+                                <input id="keywords" name="key1" type="text" class="form-control" placeholder={{keyword1}} maxlength="50">
+                                <input id="keywords" name="key2" type="text" class="form-control" placeholder={{keyword2}} maxlength="50">
+                                <input id="keywords" name="key3" type="text" class="form-control" placeholder={{keyword3}} maxlength="50">
+                                <input id="keywords" name="key4" type="text" class="form-control" placeholder={{keyword4}} maxlength="50">
+                                <input id="keywords" name="key5" type="text" class="form-control" placeholder={{keyword5}} maxlength="50">
+                                <input id="keywords" name="key6" type="text" class="form-control" placeholder={{keyword6}} maxlength="50">
+                            </div>
+                        </div>
                     </div>
-                </div>
+                    <div class="form-inline">
+                        <label for="contact"><strong>Contact: </strong></label>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input id="contactName" type="text" class="form-control" placeholder="{{name}}" maxlength="50">
+                                <input id="contactEmail" type="email" class="form-control contactEmail" placeholder="{{email}}" maxlength="50">
+                                <input id="contactPhone" type="text" class="form-control contactPhone" placeholder="{{phone}}">
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn btn-info btn-block" type="submit"><strong>Update</strong></button>
+                </form>
             </div>
-            <button class="btn btn-info btn-block" type="submit"><strong>Update</strong></button>
-        </form>
+        {{else}}
+            <div id="eventContainer">
+                <form id="addEvent">
+                    <div class="form-group alert alert-danger" id="updateclubAlerts" style="display: none"><Strong>{{err}}</Strong></div>
+                    <div class="form-group">
+                        <label for="eventTitle"><strong>Event Title:</strong></label>
+                        <input class="form-control" id="eventTitle" maxlength="60" required placeholder="Name of event...">
+                    </div>
+                    <div class="form-group">
+                        <label for="eventInfo"><strong>Event Information:</strong></label>
+                        <textarea rows="3" class="form-control" id="eventInfo" placeholder="Add event information..." maxlength="300" required></textarea>
+                    </div>
+                    <div class="form-group" id="eventLocationContainer">
+                        <label for="eventLocation"><strong>Event Location:</strong></label>
+                        <input class="form-control" id="eventLocation" maxlength="100" required placeholder="Location of event...">
+                    </div>
+                    <div class="form-inline">
+                        <span class="form-group">
+                        <select id="hour" required>
+                            <option value="" disabled selected style="display: none;">Hour</option>
+                            {{#each loop 12}}
+                                <option>{{hour}}</option>
+                            {{/each}}
+                        </select>
+                        </span>
+                        <span class="form-group">
+                        <select id="min" required>
+                            <option value="" disabled selected style="display: none;">Mins</option>
+                            {{#each loop 6}}
+                                <option>{{min}}</option>
+                            {{/each}}
+                        </select>
+                        </span>
+                        <span class="form-group">
+                        <select id="ampm" required>
+                            <option value="" disabled selected style="display: none;">AM/PM</option>
+                            <option>AM</option>
+                            <option>PM</option>
+                        </select>
+                        </span>
+                    </div>
+                    <div class="form-inline">
+                    <span class="form-group">
+                        <select id="year" required>
+                            <option value="" disabled selected style="display: none;">Year</option>
+                            {{#each loop 2}}
+                                <option>{{year}}</option>
+                            {{/each}}
+                        </select>
+                    </span>
+                        <span class="form-group">
+                            <select id="month" required>
+                                <option value="" disabled selected style="display: none;">Month</option>
+                                    {{#each loop 12}}
+                                        <option>{{month}}</option>
+                                    {{/each}}
+                            </select>
+                    </span>
+                        <span class="form-group">
+                            <select id="day" required>
+                                <option value="" disabled selected style="display: none;">Day</option>
+                                    {{#each loop 31}}
+                                        <option>{{day}}</option>
+                                    {{/each}}
+                            </select>
+                        </span>
+                    </div>
+                    <button class="btn btn-info btn-block" type="submit"><strong>Add Event</strong></button>
+                </form>
+            </div>
+        {{/unless}}
     </div>
 </template>
