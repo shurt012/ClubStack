@@ -20,7 +20,9 @@ Template.club.helpers({
         return Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {"contact.phone": 1}}).contact.phone;
     },
     clubs: () => {
-        let events = Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {event: 1}}).event || [];
+        let events = Club.findOne({"Club Name": FlowRouter.getQueryParam("clubname")}, {fields: {event: 1}}).event;
+        if(!events) return null;
+
         events.sort((a, b) => {
             let yearA = a.date.year, yearB = b.date.year;
             let monthA = a.date.month, monthB = b.date.month;

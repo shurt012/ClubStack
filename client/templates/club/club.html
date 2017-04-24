@@ -45,33 +45,37 @@
                 <strong>Phone:</strong>  {{phone}}<br>
             </div>
             <h3><strong><u>Events:</u></strong></h3><hr>
-            {{#each clubs}}
-                <table id="clubEventsList" class="table table-responsive">
-                    <tbody>
-                    <tr>
-                        <td><strong>Title:</strong></td>
-                        <td>{{this.title}}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Description:</strong></td>
-                        <td>{{this.info}}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Location:</strong></td>
-                        <td>{{this.location}}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Time:</strong></td>
-                        <td>{{this.time}}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Date:</strong></td>
-                        <td>{{this.date.month}}/{{this.date.day}}/{{this.date.year}}</td>
-                    </tr>
-                    </tbody>
-                </table>
-                <hr>
-            {{/each}}
+            {{#if clubs}}
+                {{#each clubs}}
+                    <table id="clubEventsList" class="table table-responsive">
+                        <tbody>
+                        <tr>
+                            <td><strong>Title:</strong></td>
+                            <td>{{this.title}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Description:</strong></td>
+                            <td>{{this.info}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Location:</strong></td>
+                            <td>{{this.location}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time:</strong></td>
+                            <td>{{this.time}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Date:</strong></td>
+                            <td>{{this.date.month}}/{{this.date.day}}/{{this.date.year}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                {{/each}}
+            {{else}}
+                <p><strong>This club has not created any events yet.</strong></p>
+            {{/if}}
         </div>
     </div>
 </template>
