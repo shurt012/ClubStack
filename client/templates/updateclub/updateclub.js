@@ -130,14 +130,25 @@ Template.updateclub.events({
         };
 
         let date = new Date(event.date.year, event.date.month - 1, event.date.day);
+        let now = new Date();
+        now.setHours(0,0,0,0);
+
         if(date.getMonth() != event.date.month - 1)
         {
             template.err.set("You entered an invalid date!");
             document.getElementById("updateclubAlerts").style.display = "inherit";
-        }else
+        }else if(date < now)
         {
-            document.getElementById("updateclubAlerts").style.display = "none";
-        }
+            template.err.set("This date already passed!");
+            document.getElementById("updateclubAlerts").style.display = "inherit";
+        }else
+            Meteor.call("addEvent", FlowRouter.getQueryParam("club"), event, (err, result) => {
+                if(err) {
+                    template.err.set(err);
+                    document.getElementById("updateclubAlerts").style.display = "inherit";
+                }else
+                    FlowRouter.go("/home");
+            });
     },
     "submit #clubContainer form": (event, template) => {
         event.preventDefault();

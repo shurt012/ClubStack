@@ -1,3 +1,17 @@
 .clubContact{
     margin: 50px 50px;
 }
+#clubEventsList{
+    border: none;
+    background-color: #d9dee0;
+}
+#clubEventsList td, #clubEventsList tr
+{
+    border: none;
+    text-align: left;
+    height: 30px;
+}
+hr {
+    background-color: black;
+    border-color: black;
+}

@@ -18,5 +18,9 @@ Meteor.methods({
     },
     updateClub: function(doc) {
         Club.update({"Club Name": doc["Club Name"]}, {$set: doc});
-    }
-});
+    },
+    addEvent: function (club, event) {
+        let isOwner = Meteor.users.findOne({_id: this.userId}, {fields: {clubs: 1, _id: 0}}).clubs.includes(club);
+        if(isOwner)
+            Club.update({"Club Name": club}, {$push: {event: event}});
+}});

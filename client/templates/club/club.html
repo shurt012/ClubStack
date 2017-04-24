@@ -38,14 +38,40 @@
                 </div>
             </div>
         {{/if}}
-        <div id="clubContent" style="text-align: center">
-            <div class="clubContact">
+        <div id="clubContent">
+            <div class="clubContact" style="text-align: center">
                 <strong>Contact:</strong>   <span style="text-transform: capitalize">{{admin}}</span><br>
                 <strong>Email:</strong>  {{email}}<br>
                 <strong>Phone:</strong>  {{phone}}<br>
             </div>
-            <h3><strong><u>Events:</u></strong></h3>
-
+            <h3><strong><u>Events:</u></strong></h3><hr>
+            {{#each clubs}}
+                <table id="clubEventsList" class="table table-responsive">
+                    <tbody>
+                    <tr>
+                        <td><strong>Title:</strong></td>
+                        <td>{{this.title}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Description:</strong></td>
+                        <td>{{this.info}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Location:</strong></td>
+                        <td>{{this.location}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Time:</strong></td>
+                        <td>{{this.time}}</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Date:</strong></td>
+                        <td>{{this.date.month}}/{{this.date.day}}/{{this.date.year}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <hr>
+            {{/each}}
         </div>
     </div>
 </template>
