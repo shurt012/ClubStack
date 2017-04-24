@@ -12,6 +12,7 @@ Club.attachSchema(new SimpleSchema({
         index: true,
         unique: true,
         label: "Name",
+        min: 1,
         max: 50
     },
     keywords: {
@@ -21,10 +22,12 @@ Club.attachSchema(new SimpleSchema({
     },
     "keywords.$": {
         type: String,
+        min: 1,
         max: 50
     },
     description: {
         type: String,
+        min: 1,
         max: 300
     },
     admin: {
@@ -39,11 +42,12 @@ Club.attachSchema(new SimpleSchema({
     },
     "contact.name": {
         type: String,
+        min: 1,
         max: 50
     },
     "contact.email": {
         type: String,
-        regEx: /.*@fiu\.edu$/,
+        regEx: /.*(@fiu\.edu$)/,
         max: 50
     },
     "contact.phone": {

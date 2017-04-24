@@ -29,8 +29,6 @@ Template.updateclub.onRendered( function() {
             email.setCustomValidity("");
     }
 
-    document.getElementById("clubName").value = FlowRouter.getQueryParam("club");
-
     phone.onchange = validatePhone;
     email.onchange = validateEmail;
 });
@@ -40,36 +38,73 @@ Template.updateclub.helpers({
         return Template.instance().err.get();
     },
     Url: () => {
-        document.getElementById("clubName").value = FlowRouter.getQueryParam("club");
         return FlowRouter.getQueryParam("club");
+    },
+    description: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {description: 1}}).description;
+    },
+    keyword1: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[0];
+        return keywords ? keywords : "";
+    },
+    keyword2: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[1];
+        return keywords ? keywords : "";
+    },
+    keyword3: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[2];
+        return keywords ? keywords : "";
+    },
+    keyword4: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[3];
+        return keywords ? keywords : "";
+    },
+    keyword5: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[4];
+        return keywords ? keywords : "";
+    },
+    keyword6: () => {
+        let keywords = Club.find({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {keywords: 1}}).fetch()[0].keywords[5];
+        return keywords ? keywords : "";
+    },
+    name: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.name": 1}}).contact.name;
+    },
+    email: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.email": 1}}).contact.email;
+    },
+    phone: () => {
+        return Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.phone": 1}}).contact.phone;
     }
 });
 
 Template.updateclub.events({
     "submit form": (event, template) => {
         event.preventDefault();
-
         const values = $("form input, textarea").map(function(){
             return $(this).val();
         }).get();
 
         let keywords = [];
-        for(var i = 2; i <= 7; i++)
-            if(values[i] != "")
+        for(var i = 1; i <= 6; i++) {
+            if (values[i] != "")
                 keywords.push(values[i].toUpperCase());
+            else if($("#placeholders input[name='key"+i+"']").attr("placeholder"))
+                keywords.push($("#placeholders input[name='key"+i+"']").attr("placeholder"));
+        }
 
         const club = {
-            "Club Name": values[0],
-            description: values[1],
+            "Club Name": FlowRouter.getQueryParam("club"),
+            description: (values[0]) ? values[0] : Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {description: 1}}).description,
             keywords: keywords,
             contact: {
-                "name": values[8],
-                "email": values[9],
-                "phone": values[10]
+                "name": (values[7]) ? values[7] : Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.name": 1}}).contact.name,
+                "email": (values[8]) ? values[8] : Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.email": 1}}).contact.email,
+                "phone": (values[9]) ? values[9] : Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}, {fields: {"contact.phone": 1}}).contact.phone
             }
         };
 
-        if( Club.findOne({"Club Name": values[0]}) )
+        if( Club.findOne({"Club Name": FlowRouter.getQueryParam("club")}) )
         {
             Meteor.call("updateClub",club, (err, result) => {
                 if(err) {
@@ -80,11 +115,6 @@ Template.updateclub.events({
                     FlowRouter.go("/");
                 }
             });
-        } else (keywords.length < 1)
-        {
-            template.err.set("Must enter at least one keyword!");
-            document.getElementById("updateclubAlerts").style.display = "inherit";
         }
-
     }
 });

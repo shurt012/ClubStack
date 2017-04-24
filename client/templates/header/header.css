@@ -2,7 +2,10 @@
     position: relative;
     color: black;
 }
-
+ul ul a {
+    text-decoration: underline;
+    text-align: center;
+}
 .dropdown-submenu .dropdown-menu {
     top: 0;
     left: 100%;

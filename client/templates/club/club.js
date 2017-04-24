@@ -18,5 +18,8 @@ Template.club.events({
     },
     "click #unenroll button": (event, template) => {
         Meteor.call("Unenroll", FlowRouter.getQueryParam("clubname"));
+    },
+    "click #clubMessage": () => {
+        window.location = `messages?club=${FlowRouter.getQueryParam("clubname")}`;
     }
 });
