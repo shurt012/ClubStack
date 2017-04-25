@@ -2,7 +2,6 @@
  * Created by Edward on 4/19/2017.
  */
 
-import { Messages } from '../../../both/collections/messages.js';
 import {SimpleChat} from 'meteor/cesarve:simple-chat/config';
 import Club from "../../../both/collections/club";
 
@@ -13,16 +12,9 @@ Template.messages.onCreated(function(){
 });
 
 Template.messages.helpers({
-      
-   chatmessages() {
-     return Messages.find();
-   },
-   
-   chatname:()=> {
-       let clubname = FlowRouter.getQueryParam("club");
-       return clubname;
-   },
-   
+    chatname:()=> {
+       return FlowRouter.getQueryParam("club");
+    },
     getClubs: () => {
         let state = Template.instance().state.get();
         let query = Template.instance().clubs.get();
@@ -32,7 +24,6 @@ Template.messages.helpers({
         else
             return query.length > 0 ? getNames(query) : ["No clubs have been created yet."];
     },
-    
     clubsPresent: () => {
         return Template.instance().clubsPresent.get();
     },   
@@ -40,33 +31,6 @@ Template.messages.helpers({
 });
 
  Template.messages.events({
-   'submit .new-message'(event) {
-     // Prevent default browser form submit
-     event.preventDefault();
-     // Get value from form element
-     const target = event.target;
-     const text = target.text.value;
-     
-     // Insert a message into the collection
-     Messages.insert({
-       text,
-       createdAt: new Date(), // current time
- 	 //user information
-     //TODO: Get user account details
-         owner: Meteor.userId(), 
-         username:Meteor.user().username,
-     });
-     
-     
-     // Clear form
-     target.text.value = '';
-     // scroll to last message
-     $('.panel-body').scrollTop($('.media-list').height())
-	},
-
-    "click #clubParam a": (event) => {
-       location.reload();
-    },
     "click #allClubs": function (event, template) {
         event.preventDefault();
         template.state.set(false);
@@ -75,6 +39,9 @@ Template.messages.helpers({
         clubs.length > 0 ? (template.clubs.set(clubs), template.clubsPresent.set(true)) : (template.clubs.set([]), template.clubsPresent.set(false));
         $("#searchResults").css("display", "inline");
     },
+     "click #clubParam a": (event) => {
+         location.reload();
+     },
     "click, dblclick, keydown, keyup, keypress": (event) => {
         $("#searchResults").css("display", "none");
     },         

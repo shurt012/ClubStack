@@ -65,9 +65,3 @@ FlowRouter.route("/messages", {
         FlowLayout.render("layout", {main: "messages"});
     }
 });
-FlowRouter.route("/calendar", {
-    triggersEnter: loggedIn,
-    action: () => {
-        FlowLayout.render("layout", {main: "calendar"});
-    }
-});

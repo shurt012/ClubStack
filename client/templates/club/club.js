@@ -34,6 +34,9 @@ Template.club.helpers({
 });
 
 Template.club.events({
+    "click .notSignedIn button": () => {
+        FlowRouter.go("/signin");
+    },
     "click #enroll button": (event, template) => {
         Meteor.call("Enroll", FlowRouter.getQueryParam("clubname"));
     },

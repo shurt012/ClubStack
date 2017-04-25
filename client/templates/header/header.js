@@ -18,6 +18,9 @@ Template.header.helpers({
 });
 
 Template.header.events({
+    "click #messagesTab a": () => {
+        location.reload();
+    },
     "click .colapseNavBtn a": () => {
         if($(window).width() < 768) {
             $("#toggle-button").click();
